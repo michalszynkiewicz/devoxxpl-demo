@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search engine</title>
+    <link rel="stylesheet" href="materialize.min.css">
+    <link rel="stylesheet" href="search.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<div class="container">
+    <h1>Search engine</h1>
+
+    <div class="row">
+        <div class="col m9 s12">
+            <div class="row">
+                <input type="text" id="searchTerm" placeholder="search term">
+                <button type="button" class="btn-large" value="Search" onclick="search()">Search</button>
+            </div>
+            <div id="results">
+
+            </div>
+        </div>
+        <div class="col m2 s12 offset-m1">
+            <div class="">
+                Advertisement
+            </div>
+            <div id="ads" class="row">
+
+            </div>
+        </div>
+
+    </div>
+    <footer>
+        Your userId is <i><span id="userId"></span></i><br />
+        This page uses <a href="https://materializecss.com/">Materialize</a>
+    </footer>
+
+</div>
+<script type="text/javascript">
+        var userId = Math.random().toString(36).slice(-10);
+
+        var clear = function (element) {
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+        }
+
+        var fetchAds = function () {
+            fetch('/ads/' + userId)
+                .then(response => response.text())
+                .then(function (result) {
+                    var ads = document.querySelector('#ads');
+                    clear(ads);
+
+                    ads.insertAdjacentHTML('beforeend', '<div class="card-panel light-blue lighten-4">' + result + '</div>')
+                });
+        }
+
+        var search = function () {
+            var term = document.querySelector('#searchTerm').value;
+            console.log(term);
+            fetch('/search/' + userId + '/' + term)
+                .then(response => response.json())
+                .then(function (pages) {
+                    var results = document.querySelector('#results');
+                    clear(results);
+                    pages.forEach(function (item) {
+                        results.insertAdjacentHTML('beforeend', '<div class="row"><a href="' + item + '">' + item + '</a></div>')
+                    })
+                });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('#userId').innerHTML = userId;
+        });
+        fetchAds();
+        // fetch ads from time to time
+        setInterval(fetchAds, 2000);
+
+    </script>
+</body>
+
+</html>
