@@ -17,12 +17,28 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 
+/**
+ * The search engine REST endpoint
+ * that enables looking for pages based on given keywords.
+ */
 @Path("/search")
 public class SearchEndpoint {
 
+    /**
+     * A reactive Stream that enables sending to a Kafka server,
+     * all keywords provided by each user in every search.
+     * The ads service is notified and then stores
+     * those keywords to provide contextual ads for every user.
+     */
     @Stream("search-terms")
     Emitter<JsonObject> queryEmitter;
 
+    /**
+     * Searches pages based on provided keywords
+     * @param userId the id of the user performing the search
+     * @param query the list of keywords separated by a blank space
+     * @return a List containing the URI of the pages found
+     */
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

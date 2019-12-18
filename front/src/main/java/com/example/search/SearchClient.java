@@ -9,6 +9,9 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
+ * Represents the public interface of the search microservice
+ * implemented in the search module.
+ *
  * @author Michal Szynkiewicz, michal.l.szynkiewicz@gmail.com
  * <br>
  * Date: 21/06/2019

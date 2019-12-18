@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Quarkus Microservices Search Engine Project</name>
+    <name>Quarkus Microservices Search Engine Sample Project</name>
     <description>A sample search application compound of 3 applications: search engine microservice, advertisement microservice and the frontend.</description>
 
     <modules>

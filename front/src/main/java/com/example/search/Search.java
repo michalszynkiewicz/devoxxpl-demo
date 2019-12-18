@@ -18,6 +18,12 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 
+/**
+ * A search JAX-RS endpoint that just dispatches request from
+ * the front-end to the actual search microservice.
+ * The URI of the actual service is provided in the application.properties
+ * and configured here using Microprofile Configuration.
+ */
 @Path("/search")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -26,6 +32,10 @@ public class Search {
    @ConfigProperty(name = "searchServiceUri")
    URI searchServiceUri;
 
+   /**
+    * A JAX-RS client that dispatches the request
+    * to the actual search service.
+    */
    SearchClient searchClient;
 
    @GET

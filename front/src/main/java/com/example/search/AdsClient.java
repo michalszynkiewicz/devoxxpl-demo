@@ -7,6 +7,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
+ * Represents the public interface of the advertisement microservice
+ * implemented in the ads module.
+ *
  * @author Michal Szynkiewicz, michal.l.szynkiewicz@gmail.com
  * <br>
  * Date: 21/06/2019

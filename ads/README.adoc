@@ -1,0 +1,20 @@
+= Quarkus Advertisement Microservice
+
+A quarkus microservice that provides a JAX-RS endpoint
+to get random ads based on the search keywords provided by a user.
+
+Every time a search request is received by the link:../search[search] service,
+the ads service is reactively notified.
+This way, it can keep a history of the search keywords given
+by each user to provide contextual ads.
+That feature is implemented using Microprofile Reactive Streams.
+
+== Running the application
+
+You can start the application in development mode,
+that will enable hot deployment, by executing the following maven command:
+
+[source,bash]
+----
+mvn clean compile quarkus:dev
+----
