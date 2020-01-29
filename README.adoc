@@ -1,0 +1,16 @@
+= Quarkus Microservices Search Engine Sample Project
+
+This is the sample project developed during Devoxx Poland 2019.
+The talk is available https://youtu.be/g9l0l4Jrwl0[here].
+
+The project is compound by 3 applications:
+
+- link:search[a search engine microservice] that enables users to search pages by providing some keywords.
+- link:ads[a advertisement microservice] that provides ads based on search keywords provided by a user.
+- link:front[a front-end application] that enables the user to search pages and shows contextual random ads.
+
+== Requirements
+
+- JDK 8 (for Quarkus)
+- PostgreSQL to store web pages metadata.
+- Apache Kafka to stream search keywords to ads service. Check this https://kafka.apache.org/quickstart[link] to download and start Kafka.

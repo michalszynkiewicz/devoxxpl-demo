@@ -1,0 +1,26 @@
+= Quarkus Search Engine Microservice
+
+A quarkus microservice that provides a JAX-RS endpoint
+to search pages based on keywords given by a user.
+
+It stores the metadata for each page in a PostgreSQL database,
+including an associated keyword and its URI.
+
+The database access is performed using https://quarkus.io/guides/hibernate-orm-panache[Panache],
+a Quarkus extension that reduces boilerplate by providing
+a DAO/Repository implementation.
+
+Every time a user performs a search, the provided keywords
+are reactively sent to the link:../ads[ads] service,
+so that it can provide contextual ads for users.
+That feature is implemented using Microprofile Reactive Streams.
+
+== Running the application
+
+You can start the application in development mode,
+that will enable hot deployment, by executing the following maven command:
+
+[source,bash]
+----
+mvn clean compile quarkus:dev
+----

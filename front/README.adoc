@@ -1,0 +1,17 @@
+= Quarkus Search Front-end
+
+A quarkus front-end application that enables a user to search for pages
+using keywords. Contextual random ads are shown based on the user's keyword history.
+
+The app communicates with the link:../search[search] and link:../ads[ads] microservices
+to get the data to display.
+
+== Running the application
+
+You can start the application in development mode,
+that will enable hot deployment, by executing the following maven command:
+
+[source,bash]
+----
+mvn clean compile quarkus:dev
+----

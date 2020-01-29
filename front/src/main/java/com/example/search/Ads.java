@@ -16,6 +16,11 @@ import javax.ws.rs.core.MediaType;
 import java.net.URI;
 
 /**
+ * A advertisement JAX-RS endpoint that just dispatches request from
+ * the front-end to the actual ads microservice.
+ * The URI of the actual service is provided in the application.properties
+ * and configured here using Microprofile Configuration.
+ *
  * @author Michal Szynkiewicz, michal.l.szynkiewicz@gmail.com
  * <br>
  * Date: 21/06/2019
@@ -28,6 +33,10 @@ public class Ads {
    @ConfigProperty(name = "adsServiceUri")
    URI adsServiceUri;
 
+   /**
+    * A JAX-RS client that dispatches the request
+    * to the actual ads service.
+    */
    AdsClient adsClient;
 
    @GET

@@ -18,14 +18,28 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+/**
+ * The advertisement REST endpoint that enables
+ * getting random ads based on user's search keyword history.
+ */
 @Path("/ads")
 public class AdsResource {
-
+   /**
+    * A Map that stores the list of all keywords a user has searched.
+    *
+    * @see #consume(JsonObject)
+    */
    private final Map<String, List<String>> keywordsByUser = new ConcurrentHashMap<>();
 
    @Inject
    AdStorage adStorage;
 
+   /**
+    * Method called reactively to fill the {@link #keywordsByUser} map.
+    * Every time a user performs a search in the search microservice,
+    * the method is called.
+    * @param message a {@link JsonObject} containing the keywords provided by a given user in a search
+    */
    @Incoming("queries")
    public void consume(JsonObject message) {
       System.out.println("got user query: " + message);
@@ -42,7 +56,7 @@ public class AdsResource {
 
    private void addKeyword(String userId, String k) {
       keywordsByUser.computeIfAbsent(userId, key -> new ArrayList<>())
-            .add(k);
+                    .add(k);
    }
 
    @GET
@@ -66,6 +80,4 @@ public class AdsResource {
       int adIndex = new Random().nextInt(ads.size());
       return ads.get(adIndex);
    }
-
-
 }
